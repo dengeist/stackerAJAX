@@ -81,6 +81,20 @@ var getUnanswered = function(tags) {
 	});
 };
 
+var getTopAnswerers = function(tags){
+    var request = { 
+        tag: tags,
+        period: 'all_time',
+        site: 'stackoverflow'
+    };
+    $.ajax({
+        url: "http://api.stackexchange.com/2.2/tags/",
+        data: request,
+        dataType: "jsonp",
+        type: "GET",
+    })
+};
+
 
 $(document).ready( function() {
 	$('.unanswered-getter').submit( function(e){
@@ -95,6 +109,6 @@ $(document).ready( function() {
         e.preventDefault();
         $('.results').html('');
         var tags = $(this).find("input[name='answerers']").val();
-        console.log(tags);
+        getTopAnswerers(tags);
 	});
 });
