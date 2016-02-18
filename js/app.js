@@ -88,11 +88,13 @@ var getTopAnswerers = function(tags){
         site: 'stackoverflow'
     };
     $.ajax({
-        url: "http://api.stackexchange.com/2.2/tags/{tag}/top-answerers/{period}",
+        url: "http://api.stackexchange.com/2.2/tags/{tag}/top-answerers/",
         data: request,
-        success: function(response){console.log('success')},
         dataType: "jsonp",
         type: "GET",
+    })
+    .done(function(result){
+    	console.log(result);
     })
 };
 
@@ -112,4 +114,6 @@ $(document).ready( function() {
         var tags = $(this).find("input[name='answerers']").val();
         getTopAnswerers(tags);
 	});
+		// run on page load to expedite logging of object
+		getTopAnswerers('html');
 });
