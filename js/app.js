@@ -91,4 +91,10 @@ $(document).ready( function() {
 		var tags = $(this).find("input[name='tags']").val();
 		getUnanswered(tags);
 	});
+		$('.inspiration-getter').submit(function(e){
+        e.preventDefault();
+        $('.results').html('');
+        var tags = $(this).find("input[name='answerers']").val();
+        console.log(tags);
+	});
 });
