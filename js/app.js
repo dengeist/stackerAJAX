@@ -88,7 +88,7 @@ var getTopAnswerers = function(tags){
         site: 'stackoverflow'
     };
     $.ajax({
-        url: "http://api.stackexchange.com/2.2/tags/{tag}/top-answerers/",
+        url: "http://api.stackexchange.com/2.2/tags/"+request.tag+"/top-answerers/"+request.period,
         data: request,
         dataType: "jsonp",
         type: "GET",
