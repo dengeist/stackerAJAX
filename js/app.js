@@ -31,6 +31,15 @@ var showQuestion = function(question) {
 	return result;
 };
 
+var showAnswerer = function(answerer){
+    var result = $('.templates .answerer').clone();
+
+    var answererElem = result.find('.answerer-name a');
+    answererElem.attr('href', answerer.user.link);
+    answererElem.text(answerer.user.display_name);
+
+}
+
 
 // this function takes the results object from StackOverflow
 // and returns the number of results and tags to be appended to DOM
@@ -95,6 +104,7 @@ var getTopAnswerers = function(tags){
         type: "GET",
     })
     .done(function(result){
+        var searchResults = showSearchResults(request.tag, result.items.length);
     	console.log('the tag object is', result);
     })
     .fail(function(jqXHR, error){ //this waits for the ajax to return with an error promise object
@@ -121,5 +131,5 @@ $(document).ready( function() {
 	});
 		// run on page load to expedite logging of object
 		getTopAnswerers('html');
-        getUnanswered('css');
+        // getUnanswered('css');
 });
