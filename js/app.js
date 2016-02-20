@@ -38,6 +38,7 @@ var showAnswerer = function(answerer){
     answererElem.attr('href', answerer.user.link);
     answererElem.text(answerer.user.display_name);
 
+    return result;
 }
 
 
@@ -106,6 +107,12 @@ var getTopAnswerers = function(tags){
     .done(function(result){
         var searchResults = showSearchResults(request.tag, result.items.length);
     	console.log('the tag object is', result);
+
+        $('.search-results').html(searchResults);
+        $.each(result.items, function(i, item){
+            var answerer = showAnswerer(item);
+            $('.results').append(answerer);
+        });
     })
     .fail(function(jqXHR, error){ //this waits for the ajax to return with an error promise object
         var errorElem = showError(error);
