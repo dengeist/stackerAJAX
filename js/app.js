@@ -66,6 +66,7 @@ var getUnanswered = function(tags) {
 	})
 	.done(function(result){ //this waits for the ajax to return with a succesful promise object
 		var searchResults = showSearchResults(request.tagged, result.items.length);
+        console.log('the question object is', result);
 
 		$('.search-results').html(searchResults);
 		//$.each is a higher order function. It takes an array and a function as an argument.
@@ -94,8 +95,12 @@ var getTopAnswerers = function(tags){
         type: "GET",
     })
     .done(function(result){
-    	console.log(result);
+    	console.log('the tag object is', result);
     })
+    .fail(function(jqXHR, error){ //this waits for the ajax to return with an error promise object
+        var errorElem = showError(error);
+        $('.search-results').append(errorElem);
+    });
 };
 
 
@@ -116,4 +121,5 @@ $(document).ready( function() {
 	});
 		// run on page load to expedite logging of object
 		getTopAnswerers('html');
+        getUnanswered('css');
 });
