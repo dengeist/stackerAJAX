@@ -38,6 +38,9 @@ var showAnswerer = function(answerer){
     answererElem.attr('href', answerer.user.link);
     answererElem.text(answerer.user.display_name);
 
+    var answererRep = result.find('.answerer-reputation');
+    answererRep.text(answerer.user.reputation); 
+
     return result;
 }
 
@@ -138,5 +141,4 @@ $(document).ready( function() {
 	});
 		// run on page load to expedite logging of object
 		getTopAnswerers('html');
-        // getUnanswered('css');
 });
